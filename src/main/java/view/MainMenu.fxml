@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainMenuController">
+    <children>
+        <BorderPane fx:id="borderpane" prefHeight="700.0" prefWidth="1300.0">
+            <left>
+                <VBox alignment="TOP_CENTER" prefHeight="700.0" prefWidth="190.0" spacing="20.0" style="-fx-background-color: #353232;" BorderPane.alignment="CENTER">
+                    <children>
+                        <Label prefHeight="33.0" prefWidth="193.0" text="retail." textFill="WHITE">
+                            <graphic>
+                                <FontIcon iconColor="RED" iconLiteral="fa-rocket" iconSize="35" />
+                            </graphic>
+                            <font>
+                                <Font name="SansSerif Bold" size="28.0" />
+                            </font>
+                        </Label>
+                        <Label prefHeight="17.0" prefWidth="168.0" text="Sales" textFill="WHITE">
+                            <font>
+                                <Font name="SansSerif Regular" size="14.0" />
+                            </font>
+                            <graphic>
+                                <FontIcon iconColor="WHITE" iconLiteral="fa-shopping-cart" wrappingWidth="20.0" />
+                            </graphic>
+                            <VBox.margin>
+                                <Insets />
+                            </VBox.margin>
+                            <opaqueInsets>
+                                <Insets />
+                            </opaqueInsets>
+                        </Label>
+                        <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="169.0" text="ANALYZE" textFill="#7b7b7b">
+                            <font>
+                                <Font name="SansSerif Regular" size="11.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="75.0" prefHeight="17.0" prefWidth="168.0" text="Reports" textFill="WHITE">
+                            <font>
+                                <Font name="SansSerif Regular" size="14.0" />
+                            </font>
+                            <graphic>
+                                <FontIcon iconColor="WHITE" iconLiteral="fa-file-text" wrappingWidth="20.0" />
+                            </graphic>
+                            <effect>
+                                <ColorAdjust contrast="-0.52" />
+                            </effect>
+                        </Label>
+                        <Label layoutX="21.0" layoutY="112.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="14.0" prefWidth="169.0" text="MANAGE" textFill="#7b7b7b">
+                            <font>
+                                <Font name="SansSerif Regular" size="11.0" />
+                            </font>
+                        </Label>
+                  <Label layoutX="21.0" layoutY="75.0" prefHeight="17.0" prefWidth="168.0" text="Customers" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-th-list" text="" wrappingWidth="20.0" />
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                  <Label layoutX="21.0" layoutY="75.0" prefHeight="17.0" prefWidth="168.0" text="Products" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Regular" size="14.0" />
+                     </font>
+                     <graphic>
+                        <FontIcon iconColor="WHITE" iconLiteral="fa-th" wrappingWidth="20.0" />
+                     </graphic>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                  </Label>
+                    </children>
+                    <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                    </padding>
+                </VBox>
+            </left>
+            <center>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1100.0" spacing="20.0" style="-fx-background-color: white; -fx-border-color: lightgrey;" BorderPane.alignment="CENTER">
+                    <children>
+                        <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="1087.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Label text="Date" textFill="#676565" />
+                                        <DatePicker fx:id="datepicker" style="-fx-background-color: transparent; -fx-border-color: #efe8e8; -fx-opacity: 50;" />
+                                    </children>
+                                </VBox>
+                                <Region prefHeight="44.0" prefWidth="723.0" />
+                                <VBox layoutX="10.0" layoutY="10.0">
+                                    <children>
+                                        <Label text="Facilities" textFill="#676565" />
+                                        <ComboBox prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: #efe8e8; -fx-background-radius: 0px; -fx-border-radius: 5px;" />
+                                    </children>
+                                    <FlowPane.margin>
+                                        <Insets right="10.0" />
+                                    </FlowPane.margin>
+                                </VBox>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                        </FlowPane>
+                        <FlowPane hgap="20.0">
+                            <VBox.margin>
+                                <Insets left="10.0" />
+                            </VBox.margin>
+                            <children>
+                                <FlowPane prefHeight="27.0" prefWidth="75.0">
+                                    <children>
+                                        <Button fx:id="angleleft_button" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;">
+                                            <graphic>
+                                                <FontIcon iconColor="#676565" iconLiteral="fa-angle-left" iconSize="17" />
+                                            </graphic>
+                                        </Button>
+                                        <Button fx:id="angleright_button" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" textFill="#676565">
+                                            <graphic>
+                                                <FontIcon iconColor="#676565" iconLiteral="fa-angle-right" iconSize="17" />
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </FlowPane>
+                                <Button fx:id="today_button" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" text="Today" textFill="#676565" />
+                            </children>
+                        </FlowPane>
+                        <StackPane fx:id="calendar_stackpane">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </StackPane>
+                        <FlowPane alignment="TOP_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="1078.0">
+                            <VBox.margin>
+                                <Insets left="10.0" right="10.0" />
+                            </VBox.margin>
+                        </FlowPane>
+                        <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
+                            <children>
+                                <Button mnemonicParsing="false" style="-fx-background-color: #13b100; -fx-font-family: ROBOTO;" text="Add" textFill="WHITE">
+                                    <font>
+                                        <Font name="System Bold" size="12.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                            <VBox.margin>
+                                <Insets right="10.0" />
+                            </VBox.margin>
+                        </HBox>
+                    </children></VBox>
+            </center>
+        </BorderPane>
+    </children>
+</StackPane>

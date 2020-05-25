@@ -101,7 +101,7 @@
                                 <VBox>
                                     <children>
                                         <Label text="Date" textFill="#676565" />
-                                        <DatePicker fx:id="datepicker" style="-fx-background-color: transparent; -fx-border-color: #efe8e8; -fx-opacity: 50;" />
+                                        <DatePicker fx:id="datepicker" onAction="#datepickerOnAction" style="-fx-background-color: transparent; -fx-border-color: #efe8e8; -fx-opacity: 50;" />
                                     </children>
                                 </VBox>
                                 <Region prefHeight="44.0" prefWidth="723.0" />
@@ -117,22 +117,22 @@
                             <children>
                                 <FlowPane prefHeight="27.0" prefWidth="75.0">
                                     <children>
-                                        <Button fx:id="previousWeekButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;">
+                                        <Button fx:id="previousWeekButton" mnemonicParsing="false" onAction="#previousWeekButtonOnAction" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;">
                                             <graphic>
                                                 <FontIcon iconColor="#676565" iconLiteral="fa-angle-left" iconSize="17" />
                                             </graphic>
                                         </Button>
-                                        <Button fx:id="nextWeekButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" textFill="#676565">
+                                        <Button fx:id="nextWeekButton" mnemonicParsing="false" onAction="#nextWeekButtonOnAction" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" textFill="#676565">
                                             <graphic>
                                                 <FontIcon iconColor="#676565" iconLiteral="fa-angle-right" iconSize="17" />
                                             </graphic>
                                         </Button>
                                     </children>
                                 </FlowPane>
-                                <Button fx:id="dateTodayButton" mnemonicParsing="false" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" text="Today" textFill="#676565" />
+                                <Button fx:id="dateTodayButton" mnemonicParsing="false" onAction="#dateTodayButtonOnAction" prefHeight="27.0" prefWidth="66.0" style="-fx-background-color: WHITE; -fx-border-color: Lightgrey; -fx-background-radius: 50%;" text="Today" textFill="#676565" />
                             </children>
                         </FlowPane>
-                        <TableView maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="1074.0">
+                        <TableView fx:id="tableView" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="427.0" prefWidth="1074.0">
                             <columns>
                                 <TableColumn fx:id="idColumn" prefWidth="75.0" text="ID" />
                                 <TableColumn fx:id="soldItemsColumn" prefWidth="244.0" text="Sold items" />
@@ -147,7 +147,7 @@
                         </TableView>
                         <HBox alignment="CENTER_RIGHT" VBox.vgrow="NEVER">
                             <children>
-                                <Button fx:id="addSalesButton" mnemonicParsing="false" style="-fx-background-color: #13b100; -fx-font-family: ROBOTO;" text="Add" textFill="WHITE">
+                                <Button fx:id="addSalesButton" mnemonicParsing="false" onAction="#addSaleButtonOnAction" style="-fx-background-color: #13b100; -fx-font-family: ROBOTO;" text="Add sale" textFill="WHITE">
                                     <font>
                                         <Font name="System Bold" size="12.0" />
                                     </font>

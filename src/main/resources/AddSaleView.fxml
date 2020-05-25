@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="451.0" prefWidth="514.0" spacing="20.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddSaleController">
+    <children>
+        <HBox alignment="CENTER_RIGHT" prefHeight="38.0" prefWidth="673.0">
+            <children>
+                  <FontIcon fx:id="closeDialog" iconColor="#7f8183" iconLiteral="fa-times" iconSize="15" onMouseClicked="#closeDialogOnClicked" onMouseEntered="#closeDialogOnMouseEntered" onMouseExited="#closeDialogOnMouseExited" selectionEnd="0" smooth="false" stroke="#6c6f73" strokeMiterLimit="0.0" strokeWidth="0.0" wrappingWidth="30.0">
+                      <font>
+                          <Font size="28.0" />
+                      </font>
+                  </FontIcon>
+            </children>
+        </HBox>
+        <HBox layoutX="45.0" layoutY="153.0" prefHeight="30.0" prefWidth="663.0">
+            <children>
+                <FontIcon fx:id="customerIcon" iconColor="#5f6368" iconLiteral="fa-address-card-o" iconSize="25" />
+                <HBox prefHeight="30.0" prefWidth="551.0" spacing="30.0">
+                    <HBox.margin>
+                        <Insets left="38.0" right="20.0" />
+                    </HBox.margin>
+               <children>
+                  <ComboBox fx:id="customersComboBox" prefHeight="30.0" prefWidth="379.0" promptText="Customers" />
+               </children>
+                </HBox>
+            </children>
+            <VBox.margin>
+                <Insets left="35.0" />
+            </VBox.margin>
+        </HBox>
+      <HBox layoutX="45.0" layoutY="151.0" prefHeight="30.0" prefWidth="663.0">
+         <children>
+            <FontIcon iconColor="#5f6368" iconLiteral="fa-cart-plus" iconSize="25" />
+            <HBox prefHeight="30.0" prefWidth="321.0" spacing="30.0">
+               <HBox.margin>
+                  <Insets left="38.0" right="20.0" />
+               </HBox.margin>
+               <children>
+                  <ComboBox fx:id="productsComboBox" prefHeight="30.0" prefWidth="246.0" promptText="Products" />
+                  <TextField fx:id="quantityTextField" prefHeight="25.0" prefWidth="68.0" promptText="Quanity" />
+               </children>
+            </HBox>
+            <Button mnemonicParsing="false" onAction="#addProductOnAction" text="Add" />
+         </children>
+         <VBox.margin>
+            <Insets left="35.0" />
+         </VBox.margin>
+      </HBox>
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="229.0" prefWidth="446.0" style="-fx-border-color: GREY;">
+         <VBox.margin>
+            <Insets left="35.0" />
+         </VBox.margin>
+         <children>
+            <ScrollPane>
+               <content>
+                  <VBox fx:id="salesResultBox" prefHeight="200.0" prefWidth="442.0" />
+               </content>
+            </ScrollPane>
+            <HBox alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="444.0">
+               <children>
+                  <Label layoutX="319.0" layoutY="11.0" prefHeight="17.0" prefWidth="53.0" text="Total:    P" />
+                  <Label fx:id="totalAmountOfSale" prefHeight="17.0" prefWidth="95.0" text="0.0">
+                     <HBox.margin>
+                        <Insets right="40.0" />
+                     </HBox.margin>
+                  </Label>
+                  <Label layoutX="266.0" layoutY="11.0" prefHeight="17.0" prefWidth="53.0" text="Total:    P" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+        <HBox alignment="CENTER_RIGHT" spacing="25.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#saveButtonOnAction" text="Save" />
+            </children>
+            <VBox.margin>
+                <Insets right="40.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+    <effect>
+        <DropShadow blurType="GAUSSIAN" color="#757373" height="102.73" offsetX="5.0" offsetY="5.0" radius="51.932500000000005" spread="0.28" width="107.0" />
+    </effect>
+</VBox>

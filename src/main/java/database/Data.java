@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -88,11 +88,13 @@ public class Data {
         try {
             Statement st = con.createStatement(ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_SENSITIVE);
             ResultSet rs = st.executeQuery("Select * from customers order by custname");
-            rs.beforeFirst();
+
             while (rs.next()) {
-                cust = new Customers(rs.getInt(1), rs.getString(2), rs.getString(3),rs.getString(4),rs.getDouble(5));
+                cust = new Customers(rs.getInt(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4),rs.getDouble(5));
                 ca.add(cust);
             }
+
             rs.close();
             st.close();
         } catch (SQLException se){
@@ -103,7 +105,9 @@ public class Data {
 
     public static List<Sales> getSales() {
         final List<Sales> sales = new ArrayList<>();
-        final String query = "SELECT * FROM sales JOIN customers USING(custid)";
+        final String query = "SELECT s.invid, s.invdate, p.prodid, p.description, p.price, sd.qtysold, c.custid, " +
+                "c.custname, c.address, c.telno, c.balance, s.amount FROM sales s JOIN customers c ON s.custid = c.custid JOIN " +
+                "sales_details sd ON s.invid = sd.invid JOIN products p ON sd.prodid = p.prodid";
 
         try {
             final Statement statement = con.createStatement(ResultSet.CONCUR_UPDATABLE,ResultSet.TYPE_SCROLL_SENSITIVE);
@@ -128,7 +132,7 @@ public class Data {
                 final double balance = resultSet.getDouble(11);
                 final Customers customer = new Customers(customerId, customerName, address, telno, balance);
 
-                final double amount = resultSet.getDouble(13);
+                final double amount = resultSet.getDouble(12);
 
                 sales.add(new Sales(invid, invdate, salesDet, customer, amount));
             }
@@ -147,9 +151,9 @@ public class Data {
         try {
             Statement st = con.createStatement(ResultSet.CONCUR_UPDATABLE,ResultSet.TYPE_SCROLL_SENSITIVE);
             ResultSet rs = st.executeQuery("Select * from Products order by description");
-            rs.beforeFirst();
+//            rs.beforeFirst();
             while (rs.next()) {
-                Products prod = new Products(rs.getString(1),rs.getString(2),rs.getDouble(3));
+                Products prod = new Products(rs.getString(1), rs.getString(2),rs.getDouble(3));
                 pa.add(prod);
             }
             rs.close();
@@ -159,41 +163,57 @@ public class Data {
         }
         return pa;
     }
-/*
-    public static String saveSales(Sales newS) {
 
+    public static String saveSales(Sales newS) throws SQLException {
         String s = "";
-        PreparedStatement ps, psc;
-        String stsa = "INSERT INTO sales(invid, invdate, custid)  VALUES (?,?,?)";
-        String stsd = "INSERT INTO salesdetails(invid, prodid, qtysold, unitprice)  VALUES (?,?,?,?)";
-        try {
+        PreparedStatement ps;
+        String stsa = "INSERT INTO sales(invdate, amount, balance, custid)  VALUES (?,?,?,?)";
+        String stsd = "INSERT INTO sales_details(invid, prodid, qtysold, unitprice)  VALUES (?,?,?,?)";
+
+            Customers customer = newS.getCustomer();
+            final String invid = getLastInvidRecord();
             //update sales header
             ps = con.prepareStatement(stsa);
+
             //transaction processing
-            ps.setString(1, newS.getInvid());
-            ps.setDate(2, new java.sql.Date(newS.getInvdate().getTime()));
-            ps.setInt(3, newS.getCustid());
+            ps.setDate(1, newS.getInvdate());
+            ps.setDouble(2, newS.getAmount());
+            ps.setDouble(3, newS.getCustomerBalance());
+            ps.setInt(4, customer.getCustid());
             ps.execute();
-            //update sales details
             ps.close();
-            ps= con.prepareStatement(stsd);
-            ArrayList<SalesDet> salesdets = newS.getSalesDet();
-            for (SalesDet sdet: salesdets) {
-                ps.setString(1, newS.getInvid());
-                ps.setString(2,sdet.getProdid() );
-                ps.setInt(3, sdet.getQtysold());
-                ps.setDouble(4, sdet.getPrice());
-                ps.execute();
-            }
+
+
+            ps = con.prepareStatement(stsd);
+            SalesDet sdet = newS.getSalesDet();
+            Products product = sdet.getProduct();
+            ps.setString(1, invid);
+
+            ps.setString(2, product.getProdid());
+            ps.setInt(3, sdet.getQtysold());
+            ps.setDouble(4, product.getPrice());
+            ps.execute();
+
             ps.close();
-        }
-        catch (SQLException se) {
-            s =   se.getErrorCode() + " " + se.getMessage();
-        } catch (Exception e) {
-            s = e.getMessage();
-        }
+
         return s;
-    }*/
+    }
+
+    public static String getLastInvidRecord() throws SQLException {
+        String invid = " ";
+        final String getNewestInvid = "SELECT MAX(invid) FROM sales;";
+        final Statement statement = con.createStatement(ResultSet.CONCUR_UPDATABLE, ResultSet.TYPE_SCROLL_SENSITIVE);
+        final ResultSet resultSet = statement.executeQuery(getNewestInvid);
+
+        if (resultSet.next()) {
+            invid = resultSet.getString(1);
+        }
+
+        resultSet.close();
+        statement.close();
+
+        return invid;
+    }
 
     private static void setLastCust() {
         try {

@@ -8,11 +8,19 @@ public class SalesDet {
     public SalesDet(Products product, int qtysold) {
         this.product = product;
         this.qtysold = qtysold;
-        summary = qtysold + " X " + product.getDescription();
+        summary = qtysold + " x " + product.getDescription();
     }
 
     public int getQtysold() {
         return qtysold;
     }
 
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public Products getProduct() {
+        return product;
+    }
 }

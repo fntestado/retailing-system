@@ -1,8 +1,11 @@
 package controller;
 
 import database.Data;
+import model.Customers;
+import model.Products;
 import model.Sales;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public final class DataController {
@@ -26,5 +29,17 @@ public final class DataController {
 
     public List<Sales> getSales() {
         return Data.getSales();
+    }
+
+    public List<Products> getProducts() {
+        return Data.getProducts();
+    }
+
+    public List<Customers> getCustomers() {
+        return Data.getCustomers();
+    }
+
+    public void saveSales(Sales sale) throws SQLException {
+        Data.saveSales(sale);
     }
 }
